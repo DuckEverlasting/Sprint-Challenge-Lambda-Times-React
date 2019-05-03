@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopBar from './components/TopBar';
 import Header from './components/Header';
-import Content from './components/Content/Content';
+import ContentAuth from './components/Authentication/ContentAuth';
 import Carousel from "./components/Carousel/Carousel"
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <Carousel />
       <TopBar />
       <Header />
-      <Content />
+      <ContentAuth />
     </div>
   );
 }

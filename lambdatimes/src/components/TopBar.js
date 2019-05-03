@@ -2,13 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import Login from "./Login"
 
+const TopBarContainerSC = styled.div`
+  width: 100%;
+  display: flex;
+  position: fixed;
+  height: 44px;
+  z-index: 3;
+`
 const TopBarSC = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: none;
   flex-direction: row;
-  position: fixed;
   height: 44px;
   background-color: #333;
 `;
@@ -75,29 +81,64 @@ const ContainerRightSC = styled(ContainerSC)`
 const SpanRightSC = styled.span`
   cursor: pointer;
 `;
+const SpacerSC = styled.div`
+  width:  ${props => props.visible ? "8.5px" : "0"};
+  transition: width 0s;
+  transition-delay: ${props => props.visible ? "0" : ".32s"};
+`
 
-const TopBar = () => {
-  return (
-    <TopBarSC>
-      <ContainerSC>
-        <ContainerLeftSC>
-          <SpanLeftSC>TOPICS</SpanLeftSC>
-          <SpanLeftSC>SEARCH</SpanLeftSC>
-        </ContainerLeftSC>
-        <ContainerCenterSC>
-          <SpanCenterSC>GENERAL</SpanCenterSC>
-          <SpanCenterSC>BROWNBAG</SpanCenterSC>
-          <SpanCenterSC>RANDOM</SpanCenterSC>
-          <SpanCenterSC>MUSIC</SpanCenterSC>
-          <SpanCenterSC>ANNOUNCEMENTS</SpanCenterSC>
-        </ContainerCenterSC>
-        <ContainerRightSC>
-          {/* <SpanRightSC>LOG IN</SpanRightSC> */}
-          <Login />
-        </ContainerRightSC>
-      </ContainerSC>
-    </TopBarSC>
-  );
+// END STYLING
+
+
+class TopBar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      modal: false
+    }
+  }
+
+  toggle = () => {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
+
+  spacerHandler = () => {
+    if (window.innerWidth > document.documentElement.clientWidth) {
+      return this.state.modal
+    } else {
+      return false
+    }
+  }
+
+  render(){
+    return (
+      <TopBarContainerSC>
+        <SpacerSC visible={this.spacerHandler()}/>
+        <TopBarSC>
+          <ContainerSC>
+            <ContainerLeftSC>
+              <SpanLeftSC>TOPICS</SpanLeftSC>
+              <SpanLeftSC>SEARCH</SpanLeftSC>
+            </ContainerLeftSC>
+            <ContainerCenterSC>
+              <SpanCenterSC>GENERAL</SpanCenterSC>
+              <SpanCenterSC>BROWNBAG</SpanCenterSC>
+              <SpanCenterSC>RANDOM</SpanCenterSC>
+              <SpanCenterSC>MUSIC</SpanCenterSC>
+              <SpanCenterSC>ANNOUNCEMENTS</SpanCenterSC>
+            </ContainerCenterSC>
+            <ContainerRightSC>
+              {/* <SpanRightSC>LOG IN</SpanRightSC> */}
+              <Login modal={this.state.modal} toggle={this.toggle} />
+            </ContainerRightSC>
+          </ContainerSC>
+        </TopBarSC>
+        <SpacerSC visible={this.spacerHandler()}/>
+      </TopBarContainerSC>
+    );
+  };
 };
 
 export default TopBar;
