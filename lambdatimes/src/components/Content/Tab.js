@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Tab = props => {
   const classNameHandler = () => {
-    props.tab === props.selectedTab ? "tab active-tab" : "tab"
+    return (props.tab === props.selectedTab ? "tab active-tab" : "tab")
   }
 
   return (
