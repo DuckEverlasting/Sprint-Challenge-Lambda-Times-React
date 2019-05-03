@@ -130,7 +130,6 @@ class TopBar extends React.Component {
               <SpanCenterSC>ANNOUNCEMENTS</SpanCenterSC>
             </ContainerCenterSC>
             <ContainerRightSC>
-              {/* <SpanRightSC>LOG IN</SpanRightSC> */}
               <Login modal={this.state.modal} toggle={this.toggle} />
             </ContainerRightSC>
           </ContainerSC>
