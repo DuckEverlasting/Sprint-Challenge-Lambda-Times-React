@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
-// Refactor this component to use styled components and not classNames.
-// You can find the corresponding CSS in the CSS/index.css file
+import Login from "./Login"
 
 const TopBarSC = styled.div`
   width: 100%;
@@ -94,7 +92,8 @@ const TopBar = () => {
           <SpanCenterSC>ANNOUNCEMENTS</SpanCenterSC>
         </ContainerCenterSC>
         <ContainerRightSC>
-          <SpanRightSC>LOG IN</SpanRightSC>
+          {/* <SpanRightSC>LOG IN</SpanRightSC> */}
+          <Login />
         </ContainerRightSC>
       </ContainerSC>
     </TopBarSC>
